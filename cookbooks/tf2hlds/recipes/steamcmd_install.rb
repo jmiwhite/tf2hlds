@@ -28,7 +28,7 @@ remote_file "#{steamcmd_path}/steamcmd_linux.tar.gz"
 	source "http://media.steampowered.com/installer/steamcmd_linux.tar.gz"
 end
 
-bash "install steamcmd_linux" 
+bash "install steamcmd_linux" do
 	user "steam"
 	cwd "#{steamcmd_path}"
 	code <<-BLOK
