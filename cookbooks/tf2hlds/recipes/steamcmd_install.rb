@@ -24,18 +24,18 @@ directory "#{steamcmd_path}" do
 	user "steam"
 end
 
-remote_file "#{steamcmd_path}/steamcmd_linux.tar.gz"
+remote_file "#{steamcmd_path}/steamcmd_linux.tar.gz" do
 	source "http://media.steampowered.com/installer/steamcmd_linux.tar.gz"
 end
+
+yum_package "glibc.i686"
+yum_package "libstdc++48.i686" #seems very specific to amzn linux
 
 bash "install steamcmd_linux" do
 	user "steam"
 	cwd "#{steamcmd_path}"
-	code <<-BLOK
+	code <<-EOH
 		tar -xvzf steamcmd_linux.tar.gz
 		rm steamcmd_linux.tar.gz
-		./steamcmd.sh
-		BLOK
+		EOH
 end
-
-
